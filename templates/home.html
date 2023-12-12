@@ -1,0 +1,113 @@
+ {% extends "layout.html" %}
+{% block content %}
+
+<!-- <form method="post" action="{{ url_for('validaVoto') }}"> -->
+<div class="jumbotron" style="width: 900px;margin-left: 333px;height: 342px;text-align: center;margin-top: 13%; padding-top: 8px;" id="votacion">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="position: absolute;top: -11px;left: 10px;">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" id="navlogin">Login</a>
+      </li>
+    </ul>
+  </div>
+  <h1 class="display-4" style="font-size: 40px; text-align: center;">BienvenidXs</h1>
+  <p style="font-weight: 500; font-size: 23px;">¡SEAMOS UNXSOLO! Ingresa al cambio por México</p>
+  <hr class="my-4">
+  <div class="input-group flex-nowrap">
+    <span class="text" id="addon-wrapping" style="margin-bottom: 10px;">Clave Electoral</span>
+    <input type="text" id="campo_busqueda" name="campo_busqueda"  title="Campo requerido" class="form-control" placeholder="Para poder votar, ingresa tu clave que aparece en tu INE" aria-label="Username" aria-describedby="addon-wrapping" required>
+  </div>
+  <button class="btn btn-primary btn-lg" role="button" id="btnmodal" style="margin-top: 16px;margin-left: 666px;">Vota aquí</button>
+</div>
+
+  <div class="jumbotron" style="width: 900px;margin-left: 333px;height: 307px; margin-top: 13%;" id="login">
+    <h1 class="display-4" style="font-size: 25px; text-align: center;">Ver cierre de votaciones</h1>
+    <div class="input-group flex-nowrap">
+      <span class="text" id="addon-wrapping" style="margin-bottom: 10px;">Usuario</span>
+      <input type="text" id="campo_busqueda" name="campo_busqueda"  title="Campo requerido" class="form-control" placeholder="Ingresa tu usuario" aria-label="Username" aria-describedby="addon-wrapping" required>
+    </div>
+    <div class="input-group flex-nowrap">
+      <span class="text" id="addon-wrapping" style="margin-bottom: 10px;">Contraseña</span>
+      <input type="password" id="campo_busqueda" name="campo_busqueda"  title="Campo requerido" class="form-control" placeholder="Ingresa tu contraseña" aria-label="Username" aria-describedby="addon-wrapping" required>
+    </div>
+    <button class="btn btn-primary btn-lg" role="button" id="btnmodallogin" style="margin-top: 16px;margin-left: 666px;">Ingresar</button>
+  </div>
+  
+<div class="modal fade" id="empModal" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Validación de Voto</h4>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+      $('#btnmodal').click(function(){
+        var busqueda = $("input[name=campo_busqueda]").val();
+        if( busqueda.length <= 0 ) {
+          var campo = document.getElementById("campo_busqueda");
+          campo.style.borderColor="red";
+          $("#campo_busqueda").tooltip(); 
+        }else{
+          $.ajax({
+              url: '/validaVoto',
+              type: 'post',
+              data: {campo_busqueda: busqueda},
+              success: function(data){ 
+                if (typeof data == 'string'){
+                  $('.container').html(data); 
+                  $('.container').append(data.htmlresponse);
+
+                 
+                } else {
+                  $('.modal-body').html(data); 
+                  $('.modal-body').append(data.htmlresponse);
+                  $('#empModal').modal('show'); 
+                }
+               
+              }
+          });
+      }});
+
+      $("input[name=campo_busqueda]").keyup(function(){
+		    validavacio = $('input[name=campo_busqueda]').val();
+       
+        if( validavacio.length > 0 ) {
+          var campo = document.getElementById("campo_busqueda");
+          campo.style.borderColor='#ccc';
+        }
+	    });
+
+      $('#btnmodallogin').click(function(){
+        $.ajax({
+            url: '/verResultados2',
+            type: 'post',
+            success: function(data){ 
+                $('.container').html(data); 
+                $('.container').append(data.htmlresponse);
+            }
+        });
+      });
+
+      $(document).ready(function() {
+        $('#login').hide();
+      });
+
+      $('#navlogin').click(function(){
+        $('#votacion').hide();
+        $('#login').show();
+      });
+
+
+  });
+</script> 
+
+ {% endblock %}

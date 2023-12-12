@@ -1,0 +1,208 @@
+{% block content %}
+{% if showButton == False and returHome == True%}
+<script>
+  setTimeout(function() {
+      window.location.href = '/';
+  }, 10000);
+</script>
+{% endif %}
+
+<div class="container-fluid">
+  <div class="title-wrapper pt-30">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <div class="title">
+          <h2>Votaciones Presidenciales, unidxs hacemos la democracia</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30">
+        <div class="icon purple">
+          <img src="{{url_for('static', filename='img/images.jpeg')}} " style="
+          width: 60px;
+          border-radius: 30px;" alt="" />
+        </div>
+        <div class="content">
+          <h3 class="text-bold mb-10">Claudia Sheinbaun</h3>
+          <h6 class="mb-10">Partidaria de MORENA, candidata presidencial</h6>
+          {% if showButton%}
+            <button class="btn btn-primary" role="button" name="btnmorena" value="Morena">Voto por ella</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30">
+        <div class="icon success">
+          <img src="{{url_for('static', filename='img/MC.png')}} " style="
+          width: 60px;
+          border-radius: 30px;" alt="" />
+        </div>
+        <div class="content">
+          <h3 class="text-bold mb-10">Samuel Garcia</h3>
+          <h6 class="mb-10">Partidario de MOVIMIENTO CIUDADANO, candidato presidencial</h6>
+          {% if showButton%}
+            <button class="btn btn-primary" role="button" name="btnmc" value="MC">Voto por el</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30">
+        <div class="icon primary">
+          <img src="{{url_for('static', filename='img/pri.png')}} " style="
+          width: 60px;
+          border-radius: 30px;" alt="" />
+        </div>
+        <div class="content">
+          <h3 class="text-bold mb-10">Xochitl Gálvez</h3>
+          <h6 class="mb-10">Partido Revolucionario constitucional, candidato presidencial</h6>
+          {% if showButton%}
+            <button class="btn btn-primary" role="button" name="btnpri" value="Pri">Voto por ella</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30">
+        <div class="icon purple">
+          <img src="{{url_for('static', filename='img/verde.png')}} " style="
+          width: 60px;
+          border-radius: 30px;" alt="" />
+        </div>
+        <div class="content">
+          <h3 class="text-bold mb-10">Claudia Sheinbaun</h3>
+          <h6 class="mb-10">Partido Verde Ecologista, candidata presidencial</h6>
+          {% if showButton%}
+            <button class="btn btn-primary" role="button" name="btnmorena" value="PV">Voto por ella</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30">
+        <div class="icon success">
+          <img src="{{url_for('static', filename='img/pt.png')}} " style="
+          width: 60px;
+          border-radius: 30px;" alt="" />
+        </div>
+        <div class="content">
+          <h3 class="text-bold mb-10">Claudia Sheinbaun</h3>
+          <h6 class="mb-10">Partidario de Partido del trabajo, candidato presidencial</h6>
+          {% if showButton%}
+            <button class="btn btn-primary" role="button" name="btnmc" value="PT">Voto por el</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-sm-6">
+      <div class="icon-card mb-30">
+        <div class="icon primary">
+          <img src="{{url_for('static', filename='img/prd.png')}} " style="
+          width: 60px;
+          border-radius: 30px;" alt="" />
+        </div>
+        <div class="content">
+          <h3 class="text-bold mb-10">PRD</h3>
+          <h6 class="mb-10">Partido Revolucionario democratico, candidato presidencial</h6>
+          {% if showButton%}
+            <button class="btn btn-primary" role="button" name="btnpri" value="PRD">Voto por ella</button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="card-style mb-30" style="height: 580px">
+        <div class="title d-flex flex-wrap justify-content-between">
+          <div class="left">
+            <h6 class="text-medium mb-10">Estadisticas de voto presidencial</h6>
+          </div>
+          <div class="right">
+            <div class="select-style-1">
+              <div class="select-position select-sm" style="margin-right: 160px;">
+                {{ html_grafica | safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card-style mb-30" style="width: 604px;height: 580px">
+        <div class="title d-flex flex-wrap justify-content-between">
+          <div class="left">
+            <h6 class="text-medium mb-10">Estadisticas de voto presidencial</h6>
+          </div>
+          <div class="right">
+            <div class="select-style-1">
+              <div class="select-position select-sm" style="margin-right: 160px;">
+                {{ graficar_puntos | safe }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="modal fade" id="empModal" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Confirmación</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <input type="text" name="ine" value={{resultado}}  hidden>
+            <button type="button" class="btn btn-default" name="btnsave" data-dismiss="modal">Votar</button>
+            <button type="button" class="btn btn-default" value="cancelar" data-dismiss="modal">Cancelar</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+      $('.btn-primary').click(function(){
+        var partido = $(this).attr("value");
+        var ine = $("input[name=ine]").val();
+          $.ajax({
+              url: '/confirmvoto',
+              type: 'post',
+              data: {Partidovoto: partido, INE: ine},
+              success: function(data){ 
+                $('.modal-body').html(data); 
+                $('.modal-body').append(data.htmlresponse);
+                $('#empModal').modal('show'); 
+              }
+          });
+      });
+
+      $('.btn-default').click(function(){
+        var cancelar = $(this).attr("value");
+        if(cancelar!=='cancelar'){
+          $.ajax({
+              url: '/savevoto',
+              type: 'post',
+              success: function(data){ 
+                $('.container').html(data); 
+                $('.container').append(data.htmlresponse);
+                $('#empModal').modal('hide'); 
+              }
+          });
+        }
+      });
+  });
+</script> 
+{% endblock %}

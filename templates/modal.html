@@ -1,0 +1,14 @@
+{% block content %}
+{% if employeelist%}
+  <div class="alert alert-success" role="alert" style="color: #673AB7;background-color: #f4eeff;border-color: #d6e9c6;">
+    <p class="text-center">¡Este usuario no existe.</p>
+  </div>
+{% else %}
+<div class="alert alert-success" role="alert" style="color: #673AB7;background-color: #f4eeff;border-color: #d6e9c6;">
+  <h4 class="text-center">¡MUY BIEN!</h4>
+  <p class="text-center">TU VOTO YA HAZ GENERADO TU VOTO.</p>
+  <hr>
+  <p class="text-center">¡GRACIAS POR SER PARTE DE UNIDXS! EL CAMBIO ESTÁ AQUÍ .</p>
+</div>
+{% endif %}
+{% endblock %}
