@@ -1,4 +1,4 @@
- {% extends "layout.html" %}
+{% extends "layout.html" %}
 {% block content %}
 
 <!-- <form method="post" action="{{ url_for('validaVoto') }}"> -->
@@ -53,7 +53,7 @@
       $('#btnmodal').click(function(){
         var busqueda = $("input[name=campo_busqueda]").val();
         if( busqueda.length <= 0 ) {
-          var campo = document.getElementById("campo_busqueda");
+          var campo = document.getElementByIdbbb("campo_busqueda");
           campo.style.borderColor="red";
           $("#campo_busqueda").tooltip(); 
         }else{
